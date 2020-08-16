@@ -7,7 +7,7 @@ nSQL().useDatabase('animeflydb');
 
 export const actions = {
   GET_LATEST_ANIME_ADDED({commit}){
-    axios.get('https://animeflv-zeta.vercel.app/api/v1/LatestAnimeAdded')
+    axios.get('https://gogoanime.vercel.app/api/v1/LatestAnimeAdded')
       .then(res =>{
         nSQL('latestAnimeAdded')
         .query('upsert' , res.data.animes)
@@ -23,7 +23,7 @@ export const actions = {
       });
   },
   GET_LATEST_CHAPTERS_ADDED({commit}){
-    axios.get('https://animeflv-zeta.vercel.app/api/v1/LatestEpisodesAdded')
+    axios.get('https://gogoanime.vercel.app/api/v1/LatestEpisodesAdded')
       .then(res =>{
         nSQL('latestEpisodesAdded')
         .query('upsert' , res.data.episodes)
@@ -39,7 +39,7 @@ export const actions = {
       });
   },
   GET_MOVIES({commit}){
-    axios.get('https://animeflv-zeta.vercel.app/api/v1/Movies/default/1')
+    axios.get('https://gogoanime.vercel.app/api/v1/Movies/default/1')
       .then(res =>{
         nSQL('movies')
         .query('upsert' , res.data.movies)
@@ -55,7 +55,7 @@ export const actions = {
       });
   },
   GET_ALL_MOVIES({commit} , info){
-    axios.get(`https://animeflv-zeta.vercel.app/api/v1/Movies/${info.sortBy}/${info.page}`)
+    axios.get(`https://gogoanime.vercel.app/api/v1/Movies/${info.sortBy}/${info.page}`)
       .then(res =>{
         nSQL('movies')
         .query('upsert' , res.data.movies)
@@ -71,7 +71,7 @@ export const actions = {
       });
   },
   GET_ALL_SPECIALS({commit} , info){
-    axios.get(`https://animeflv-zeta.vercel.app/api/v1/Special/${info.sortBy}/${info.page}`)
+    axios.get(`https://gogoanime.vercel.app/api/v1/Special/${info.sortBy}/${info.page}`)
       .then(res =>{
         nSQL('special')
         .query('upsert' , res.data.special)
@@ -87,7 +87,7 @@ export const actions = {
       });
   },
   GET_ALL_OVAS({commit} , info){
-    axios.get(`https://animeflv-zeta.vercel.app/api/v1/Ova/${info.sortBy}/${info.page}`)
+    axios.get(`https://gogoanime.vercel.app/api/v1/Ova/${info.sortBy}/${info.page}`)
       .then(res =>{
         nSQL('ovas')
         .query('upsert' , res.data.ova)
@@ -103,7 +103,7 @@ export const actions = {
       });
   },
   GET_TV({commit} , info){
-    axios.get(`https://animeflv-zeta.vercel.app/api/v1/TV/${info.sortBy}/${info.page}`)
+    axios.get(`https://gogoanime.vercel.app/api/v1/TV/${info.sortBy}/${info.page}`)
       .then(res =>{
         nSQL('television')
         .query('upsert' , res.data.tv)
@@ -119,7 +119,7 @@ export const actions = {
       });
   },
   GET_GENRES({commit} , info){
-    axios.get(`https://animeflv-zeta.vercel.app/api/v1/Genres/${info.genre}/${info.sortBy}/${info.page}`)
+    axios.get(`https://gogoanime.vercel.app/api/v1/Genres/${info.genre}/${info.sortBy}/${info.page}`)
       .then(res =>{
         nSQL('genres')
         .query('upsert' , res.data.animes)
@@ -135,7 +135,7 @@ export const actions = {
       });
   },
   GET_EMISSIONS({commit}){
-    axios.get(`https://animeflv-zeta.vercel.app/api/v1/AnimeByState/1/updated/1`)
+    axios.get(`https://gogoanime.vercel.app/api/v1/AnimeByState/1/updated/1`)
       .then(res =>{
         nSQL('emissions')
         .query('upsert' , res.data.animes)
@@ -151,7 +151,7 @@ export const actions = {
       });
   },
   SEARCH_ANIME({commit} , query){
-    axios.get(`https://animeflv-zeta.vercel.app/api/v1/Search/${query}`)
+    axios.get(`https://gogoanime.vercel.app/api/v1/Search/${query}`)
       .then(res =>{
         nSQL('searchAnime')
         .query('upsert' , res.data.search)
@@ -167,7 +167,7 @@ export const actions = {
       });
   },
   GET_VIDEO_ANIME({commit} , id){
-    axios.get(`https://animeflv-zeta.vercel.app/api/v1/GetAnimeServers/${id}`)
+    axios.get(`https://gogoanime.vercel.app/api/v1/GetAnimeServers/${id}`)
       .then(doc =>{
         commit(type.SET_ANIME_VIDEO , doc.data.servers);
         setTimeout(() => {
