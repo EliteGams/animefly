@@ -7,7 +7,7 @@ nSQL().useDatabase('animeflydb');
 
 export const actions = {
   GET_LATEST_ANIME_ADDED({commit}){
-    axios.get('https://gogoanime.vercel.app/api/v1/LatestAnimeAdded')
+    axios.get('https://gogoanime.vercel.app/api/v1/RecentlyAddedSeries')
       .then(res =>{
         nSQL('latestAnimeAdded')
         .query('upsert' , res.data.animes)
@@ -23,7 +23,7 @@ export const actions = {
       });
   },
   GET_LATEST_CHAPTERS_ADDED({commit}){
-    axios.get('https://gogoanime.vercel.app/api/v1/LatestEpisodesAdded')
+    axios.get('https://gogoanime.vercel.app/api/v1/RecentReleaseEpisodes/1')
       .then(res =>{
         nSQL('latestEpisodesAdded')
         .query('upsert' , res.data.episodes)
@@ -39,7 +39,7 @@ export const actions = {
       });
   },
   GET_MOVIES({commit}){
-    axios.get('https://gogoanime.vercel.app/api/v1/Movies/default/1')
+    axios.get('https://gogoanime.vercel.app/api/v1/Movies/1')
       .then(res =>{
         nSQL('movies')
         .query('upsert' , res.data.movies)
@@ -167,7 +167,7 @@ export const actions = {
       });
   },
   GET_VIDEO_ANIME({commit} , id){
-    axios.get(`https://gogoanime.vercel.app/api/v1/GetAnimeServers/${id}`)
+    axios.get(`https://gogoanime.vercel.app//api/v1/DecodeVidstreamingIframeURL/${id}`)
       .then(doc =>{
         commit(type.SET_ANIME_VIDEO , doc.data.servers);
         setTimeout(() => {
